@@ -10,3 +10,10 @@ cd tutorial
 scrapy crawl quotes
 
 scrapy crawl quotes -o quotes.json
+
+---------------TO USE---------------
+cd ..
+source scrapy-env/bin/activate
+cd tutorial
+scrapy crawl ap -o ap.json
+
