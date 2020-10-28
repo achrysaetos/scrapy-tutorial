@@ -1,0 +1,48 @@
+{% extends "LAYOUT2.html" %}
+{% block body %}
+
+<section>
+
+</section>
+
+<script>
+  const section = document.querySelector('section');
+
+  let requestURL = 'https://raw.githubusercontent.com/achrysaetos/project_news_file_hosting/master/ap.json';
+  let request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
+
+  request.onload = function () {
+    const apHeadlines = request.response;
+    showAp(apHeadlines);
+  }
+
+  function showAp(jsonObj) {
+    const headlines = jsonObj;
+
+    for (let i = 0; i < headlines.length; i++) {
+      const myArticle = document.createElement('article');
+      const myH2 = document.createElement('h2');
+      const myPara1 = document.createElement('p');
+      const myPara2 = document.createElement('p');
+      const myPara3 = document.createElement('p');
+
+      myH2.textContent = headlines[i].title;
+      myPara1.textContent = headlines[i].author;
+      myPara2.textContent = headlines[i].date;
+      myPara3.textContent = headlines[i].content;
+
+      myArticle.appendChild(myH2);
+      myArticle.appendChild(myPara1);
+      myArticle.appendChild(myPara2);
+      myArticle.appendChild(myPara3);
+
+      section.appendChild(myArticle);
+    }
+  }
+
+</script>
+
+{% endblock %}
